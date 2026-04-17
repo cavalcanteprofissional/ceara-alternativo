@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
+import { ViewCounter } from '@/components/blog/view-counter'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -11,7 +12,16 @@ interface Props {
 async function getPost(slug: string) {
   const post = await prisma.post.findUnique({
     where: { slug, status: 'PUBLISHED' },
-    include: {
+    select: {
+      id: true,
+      title: true,
+      slug: true,
+      content: true,
+      excerpt: true,
+      coverImage: true,
+      publishedAt: true,
+      readingTime: true,
+      viewCount: true,
       author: { select: { id: true, name: true, image: true } },
       category: { select: { name: true, slug: true } },
       tags: { include: { tag: true } },
@@ -110,7 +120,15 @@ export default async function ArticlePage({ params }: Props) {
         </time>
         <span>•</span>
         <span>{readingTime} min de leitura</span>
+        {post.viewCount > 0 && (
+          <>
+            <span>•</span>
+            <span>{post.viewCount} visualizações</span>
+          </>
+        )}
       </div>
+
+      <ViewCounter postId={post.id} />
 
       {/* Cover Image */}
       {post.coverImage && (

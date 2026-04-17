@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'
+import { ipRateLimit } from '@/lib/ip-rate-limit'
 
 const registerSchema = z.object({
   name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
@@ -10,6 +11,9 @@ const registerSchema = z.object({
 })
 
 export async function POST(req: NextRequest) {
+  const rateLimitCheck = await ipRateLimit(req)
+  if (rateLimitCheck) return rateLimitCheck
+
   try {
     const body = await req.json()
     const parsed = registerSchema.safeParse(body)

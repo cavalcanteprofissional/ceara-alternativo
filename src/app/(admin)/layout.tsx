@@ -29,6 +29,9 @@ export default async function AdminLayout({ children }: { children: ReactNode })
                 <Link href="/admin/categories" className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
                   Categorias
                 </Link>
+                <Link href="/admin/tags" className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
+                  Tags
+                </Link>
                 <Link href="/admin/users" className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
                   Usuários
                 </Link>

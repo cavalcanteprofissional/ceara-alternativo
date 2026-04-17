@@ -8,9 +8,10 @@ const updateSchema = z.object({
   content: z.string().min(10).optional(),
   excerpt: z.string().optional(),
   coverImage: z.string().url().optional().or(z.literal('')),
-  categoryId: z.string().optional(),
+  categoryId: z.string().optional().nullable(),
   status: z.enum(['DRAFT', 'PUBLISHED', 'ARCHIVED']).optional(),
   publishedAt: z.string().optional().nullable(),
+  tags: z.array(z.string()).optional(),
 })
 
 export async function GET(
@@ -67,7 +68,7 @@ export async function PUT(
       )
     }
 
-    const data = parsed.data
+    const { tags, ...data } = parsed.data
     let readingTime = post.readingTime
 
     if (data.content) {
@@ -87,6 +88,19 @@ export async function PUT(
             : post.publishedAt,
       },
     })
+
+    if (tags) {
+      await prisma.postTag.deleteMany({ where: { postId: id } })
+      
+      if (tags.length > 0) {
+        await prisma.postTag.createMany({
+          data: tags.map(tagId => ({
+            postId: id,
+            tagId,
+          })),
+        })
+      }
+    }
 
     return NextResponse.json(updatedPost)
   } catch (error) {

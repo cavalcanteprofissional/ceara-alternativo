@@ -42,25 +42,36 @@
 - [x] Loading states em rotas importantes
 - [x] Error states em rotas importantes
 
+### Etapa 4: shadcn/ui e Sistema de Tags/Categorias Admin
+- [x] Instalar shadcn/ui
+- [x] Componentes: Button, Input, Textarea, Label, Dialog, Badge, Table, Skeleton, Sonner
+- [x] CRUD de Tags (/admin/tags)
+- [x] CRUD de Categorias (/admin/categories)
+- [x] Menu admin atualizado com Tags
+
+### Etapa 5: Editor de Artigos Completo
+- [x] Preview de artigos (toggle Editar/Preview)
+- [x] Editar posts existentes no admin (/admin/posts/[id])
+- [x] Sistema de tags nos formulários
+- [x] API Routes atualizadas para suportar tags
+
 ### Documentação
 - [x] docs/database/SCHEMA.md - Schema completo do banco
 - [x] docs/database/RLS.md - Políticas Row Level Security
+- [x] TODO.md - Registro de progresso
 
 ---
 
 ## 📋 Pendentes (Próximas Etapas)
 
 ### Prioridade Alta
-- [ ] Adicionar sistema de tags completo (CRUD)
-- [ ] shadcn/ui - instalar e configurar
-- [ ] Preview de artigos antes de publicar
-- [ ] Editar posts existentes no admin
+- [ ] Sistema de visualizações por artigo
+- [ ] Rate limiting em API Routes
 
 ### Prioridade Média
 - [ ] Newsletter (Resend/Mailgun)
 - [ ] Sistema de comentários
-- [ ] Contagem de visualizações por artigo
-- [ ] Rate limiting em API Routes
+- [ ] Editor de texto rico (Tiptap/Quill)
 
 ### Prioridade Baixa (Fase 2)
 - [ ] Integração com MeiliSearch/Algolia para busca avançada
@@ -81,10 +92,12 @@
 
 ## 📊 Estatísticas
 
-- **Arquivos criados**: ~50+
+- **Arquivos criados**: ~70+
 - **Categorias criadas**: 6
+- **Tags**: CRUD completo no admin
 - **Provedores Auth**: 3 (Google, Meta, Credentials)
-- **Pages criadas**: Homepage, Login, Register, Artigo, Categoria, Busca, Sobre, Contato, Admin, etc
+- **shadcn/ui**: 9 componentes instalados
+- **Admin**: Dashboard, Posts (criar/editar/listar), Categories, Tags
 
 ---
 
@@ -94,6 +107,8 @@
 - **Sitemap**: http://localhost:3000/sitemap.xml
 - **RSS Feed**: http://localhost:3000/feed.xml
 - **Admin**: http://localhost:3000/admin
+- **Admin Tags**: http://localhost:3000/admin/tags
+- **Admin Categories**: http://localhost:3000/admin/categories
 - **Banco**: Neon (neondb)
 
 ---
