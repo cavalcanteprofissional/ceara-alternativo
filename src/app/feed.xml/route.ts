@@ -1,5 +1,7 @@
 import { prisma } from '@/lib/prisma'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   const baseUrl = process.env.AUTH_URL || 'http://localhost:3000'
 
