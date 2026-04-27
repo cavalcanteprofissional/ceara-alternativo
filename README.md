@@ -29,9 +29,11 @@ cd ceara-alternativo
 # Instale as dependências
 npm install
 
-# Configure as variáveis de ambiente
+# Copie o arquivo de exemplo e configure
 cp .env.example .env
-# Edite o .env com a DATABASE_URL do Neon
+
+# Edite o .env com suas credenciais (veja seção Variáveis de Ambiente)
+# O arquivo .env.example está commitado no repositório
 
 # Execute as migrações e seed
 npx prisma db push
