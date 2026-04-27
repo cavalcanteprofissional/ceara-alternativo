@@ -10,21 +10,22 @@ export async function POST(
   try {
     const post = await prisma.post.findUnique({
       where: { id },
-      select: { id: true },
+      select: { id: true, viewCount: true },
     })
 
     if (!post) {
       return NextResponse.json({ error: 'Artigo não encontrado' }, { status: 404 })
     }
 
-    await prisma.post.update({
+    const updated = await prisma.post.update({
       where: { id },
       data: {
         viewCount: { increment: 1 },
       },
+      select: { viewCount: true },
     })
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true, viewCount: updated.viewCount })
   } catch (error) {
     console.error('Increment view error:', error)
     return NextResponse.json({ error: 'Erro ao incrementar visualização' }, { status: 500 })

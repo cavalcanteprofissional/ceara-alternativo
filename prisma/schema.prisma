@@ -47,6 +47,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  comments      Comment[]
 }
 
 model VerificationToken {
@@ -82,6 +83,7 @@ model Post {
   categoryId  String?
   category    Category? @relation(fields: [categoryId], references: [id])
   tags        PostTag[]
+  comments    Comment[]
 
   @@index([slug])
   @@index([status])
@@ -121,4 +123,30 @@ enum PostStatus {
   DRAFT
   PUBLISHED
   ARCHIVED
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+
+  @@index([postId])
+  @@index([approved])
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  confirmed Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([email])
 }

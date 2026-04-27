@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
-import { ipRateLimit } from '@/lib/ip-rate-limit'
+import { checkRateLimit } from '@/lib/rate-limit'
 
 const postSchema = z.object({
   title: z.string().min(3, 'Título deve ter pelo menos 3 caracteres'),
@@ -17,7 +17,7 @@ const postSchema = z.object({
 })
 
 export async function GET(req: NextRequest) {
-  const rateLimitCheck = await ipRateLimit(req)
+  const rateLimitCheck = await checkRateLimit(req)
   if (rateLimitCheck) return rateLimitCheck
 
   const { searchParams } = new URL(req.url)
@@ -41,7 +41,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const rateLimitCheck = await ipRateLimit(req)
+  const rateLimitCheck = await checkRateLimit(req)
   if (rateLimitCheck) return rateLimitCheck
 
   const session = await auth()

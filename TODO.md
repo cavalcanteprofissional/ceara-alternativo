@@ -44,7 +44,7 @@
 
 ### Etapa 4: shadcn/ui e Sistema de Tags/Categorias Admin
 - [x] Instalar shadcn/ui
-- [x] Componentes: Button, Input, Textarea, Label, Dialog, Badge, Table, Skeleton, Sonner
+- [x] Componentes: Button, Input, Textarea, Label, Dialog, Badge, Table, Skeleton, Sonner, Toggle
 - [x] CRUD de Tags (/admin/tags)
 - [x] CRUD de Categorias (/admin/categories)
 - [x] Menu admin atualizado com Tags
@@ -55,6 +55,20 @@
 - [x] Sistema de tags nos formulários
 - [x] API Routes atualizadas para suportar tags
 
+### Fase 1: Correção de Bugs Críticos
+- [x] Corrigir dotenv import no prisma.config.ts (v17+)
+- [x] Adicionar dynamic export para páginas que acessam banco
+- [x] API de categorias com Prisma adapter PostgreSQL
+
+### Fase 2: Alta Prioridade
+- [x] Sistema de visualizações por artigo (contagem por sessão)
+- [x] Rate limiting com Upstash Redis (fallback in-memory automático)
+
+### Fase 3: Média Prioridade
+- [x] Editor de texto rico (Tiptap)
+- [x] Sistema de comentários (com modelo, API, componente)
+- [x] Newsletter com Resend (opcional, só ativa se configurado)
+
 ### Documentação
 - [x] docs/database/SCHEMA.md - Schema completo do banco
 - [x] docs/database/RLS.md - Políticas Row Level Security
@@ -64,16 +78,7 @@
 
 ## 📋 Pendentes (Próximas Etapas)
 
-### Prioridade Alta
-- [ ] Sistema de visualizações por artigo
-- [ ] Rate limiting em API Routes
-
-### Prioridade Média
-- [ ] Newsletter (Resend/Mailgun)
-- [ ] Sistema de comentários
-- [ ] Editor de texto rico (Tiptap/Quill)
-
-### Prioridade Baixa (Fase 2)
+### Fase 4: Baixa Prioridade
 - [ ] Integração com MeiliSearch/Algolia para busca avançada
 - [ ] Sistema de avaliações de artigos
 - [ ] Analytics (Plausible/Sentry)
@@ -84,20 +89,21 @@
 
 | Prioridade | Descrição | Status |
 |------------|-----------|--------|
-| Alta | API Route de categorias retorna erro 500 em build (precisa de adapter) | Aberto |
-| Média | Imagens não estão sendo otimizadas | Aberto |
-| Baixa | Editor de texto simples (textarea) - sem Rich Text | Aberto |
+| ~~Alta~~ | ~~API Route de categorias retorna erro 500 em build~~ | ✅ Corrigido |
+| ~~Baixa~~ | ~~Imagens não estão sendo otimizadas~~ | ✅ Verificado (funcionando) |
+| ~~Baixa~~ | ~~Editor de texto simples (textarea) - sem Rich Text~~ | ✅ Corrigido com Tiptap |
 
 ---
 
 ## 📊 Estatísticas
 
-- **Arquivos criados**: ~70+
-- **Categorias criadas**: 6
+- **Arquivos criados**: ~80+
+- **Categorias**: CRUD completo no admin
 - **Tags**: CRUD completo no admin
 - **Provedores Auth**: 3 (Google, Meta, Credentials)
-- **shadcn/ui**: 9 componentes instalados
+- **shadcn/ui**: 10 componentes instalados
 - **Admin**: Dashboard, Posts (criar/editar/listar), Categories, Tags
+- **Features**: Tiptap, Comentários, Newsletter, Visualizações, Rate Limiting
 
 ---
 
@@ -113,4 +119,4 @@
 
 ---
 
-*Atualizado em: 2026-04-17*
+*Atualizado em: 2026-04-27*

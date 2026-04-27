@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import { ViewCounter } from '@/components/blog/view-counter'
+import { Comments } from '@/components/blog/comments'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -195,6 +196,8 @@ export default async function ArticlePage({ params }: Props) {
           </button>
         </div>
       </div>
+
+      <Comments postId={post.id} />
     </article>
   )
 }

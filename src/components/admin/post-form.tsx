@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
+import { RichTextEditor } from '@/components/admin/rich-text-editor'
 
 interface Category {
   id: string
@@ -118,11 +118,10 @@ export function PostForm({ post, categories, tags: allTags }: PostFormProps) {
 
       <div>
         <Label htmlFor="excerpt">Resumo</Label>
-        <Textarea
+        <Input
           id="excerpt"
           value={formData.excerpt}
           onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
-          rows={3}
           className="mt-1"
         />
       </div>
@@ -196,7 +195,7 @@ export function PostForm({ post, categories, tags: allTags }: PostFormProps) {
 
       <div>
         <div className="flex items-center justify-between mb-2">
-          <Label htmlFor="content">Conteúdo</Label>
+          <Label>Conteúdo</Label>
           <Button
             type="button"
             variant="outline"
@@ -207,18 +206,16 @@ export function PostForm({ post, categories, tags: allTags }: PostFormProps) {
         </div>
         {showPreview ? (
           <div className="prose dark:prose-invert max-w-none p-4 border rounded-lg bg-stone-50 dark:bg-stone-900 min-h-[400px]">
-            {formData.content.split('\n').map((p, i) => p ? <p key={i}>{p}</p> : <br key={i} />)}
+            <div dangerouslySetInnerHTML={{ __html: formData.content }} />
           </div>
         ) : (
-          <Textarea
-            id="content"
-            value={formData.content}
-            onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-            rows={20}
-            className="mt-1 font-mono text-sm"
+          <RichTextEditor
+            content={formData.content}
+            onChange={(content) => setFormData({ ...formData, content })}
+            placeholder="Escreva o conteúdo do seu artigo aqui..."
           />
         )}
-        <p className="text-xs text-stone-500 mt-1">Use Markdown para formatar o texto</p>
+        <p className="text-xs text-stone-500 mt-1">Use a barra de ferramentas para formatar o texto</p>
       </div>
 
       <div className="flex items-center gap-4">
