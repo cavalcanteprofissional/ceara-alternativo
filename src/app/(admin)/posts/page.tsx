@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
+import { Pagination } from '@/components/ui/pagination'
 
 export const dynamic = 'force-dynamic'
 
@@ -8,20 +9,37 @@ export const metadata: Metadata = {
   title: 'Admin - Artigos',
 }
 
-export default async function AdminPostsPage() {
-  const posts = await prisma.post.findMany({
-    orderBy: { updatedAt: 'desc' },
-    include: {
-      author: { select: { name: true } },
-      category: { select: { name: true } },
-    },
-  })
+const ITEMS_PER_PAGE = 10
+
+interface Props {
+  searchParams: Promise<{ page?: string }>
+}
+
+export default async function AdminPostsPage({ searchParams }: Props) {
+  const { page } = await searchParams
+  const currentPage = Math.max(1, parseInt(page || '1', 10))
+  const skip = (currentPage - 1) * ITEMS_PER_PAGE
+
+  const [posts, total] = await Promise.all([
+    prisma.post.findMany({
+      orderBy: { updatedAt: 'desc' },
+      skip,
+      take: ITEMS_PER_PAGE,
+      include: {
+        author: { select: { name: true } },
+        category: { select: { name: true } },
+      },
+    }),
+    prisma.post.count(),
+  ])
+
+  const totalPages = Math.ceil(total / ITEMS_PER_PAGE)
 
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-100">
-          Artigos
+          Artigos ({total})
         </h1>
         <Link
           href="/admin/posts/new"
@@ -94,6 +112,16 @@ export default async function AdminPostsPage() {
           </div>
         )}
       </div>
+
+      {totalPages > 1 && (
+        <div className="mt-6">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            baseUrl="/admin/posts"
+          />
+        </div>
+      )}
     </div>
   )
 }

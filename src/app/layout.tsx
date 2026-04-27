@@ -34,6 +34,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
+      <head>
+        <script
+          defer
+          data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || 'cearaalternativo.com'}
+          src="https://plausible.io/js/script.tagged-events.js"
+        />
+      </head>
       <body className={`${inter.className} min-h-screen flex flex-col bg-white dark:bg-stone-950 text-stone-900 dark:text-stone-100`}>
         <Providers>
           <ThemeSwitch>

@@ -48,6 +48,7 @@ model User {
   sessions      Session[]
   posts         Post[]
   comments      Comment[]
+  ratings       Rating[]
 }
 
 model VerificationToken {
@@ -84,6 +85,7 @@ model Post {
   category    Category? @relation(fields: [categoryId], references: [id])
   tags        PostTag[]
   comments    Comment[]
+  ratings     Rating[]
 
   @@index([slug])
   @@index([status])
@@ -149,4 +151,19 @@ model Subscriber {
   createdAt DateTime @default(now())
 
   @@index([email])
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  value     Int      @default(1)
+  createdAt DateTime @default(now())
+
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([postId, userId])
+  @@index([postId])
 }

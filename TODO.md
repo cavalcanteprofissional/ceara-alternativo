@@ -69,19 +69,33 @@
 - [x] Sistema de comentários (com modelo, API, componente)
 - [x] Newsletter com Resend (opcional, só ativa se configurado)
 
-### Documentação
-- [x] docs/database/SCHEMA.md - Schema completo do banco
-- [x] docs/database/RLS.md - Políticas Row Level Security
-- [x] TODO.md - Registro de progresso
+### Fase 4: Analytics, Avaliações e Busca
+- [x] Analytics com Plausible (script adicionado)
+- [x] Sistema de avaliações (likes) nos artigos
+- [x] Melhorias na busca (Prisma full-text)
+
+### Fase 5: Melhorias de UI/UX e Infraestrutura
+- [x] Página admin de moderação de comentários
+- [x] Paginação em listas (posts admin)
+- [x] Script de deploy (deploy.sh)
+- [x] Configuração vercel.json para migrations automáticas
 
 ---
 
-## 📋 Pendentes (Próximas Etapas)
+## 📋 Pendentes (Pós-Deploy)
 
-### Fase 4: Baixa Prioridade
+### Importante: Aplicar Migrations
+Após cada pull/deploy, execute:
+```bash
+npx prisma migrate deploy
+# ou
+npx prisma db push
+```
+
+### Funcionalidades Opcionais
+- [ ] Upload de imagens (Cloudinary/Uploadthing)
 - [ ] Integração com MeiliSearch/Algolia para busca avançada
-- [ ] Sistema de avaliações de artigos
-- [ ] Analytics (Plausible/Sentry)
+- [ ] Notificações por email para comentários pendentes
 
 ---
 
@@ -97,13 +111,13 @@
 
 ## 📊 Estatísticas
 
-- **Arquivos criados**: ~80+
+- **Arquivos criados**: ~90+
 - **Categorias**: CRUD completo no admin
 - **Tags**: CRUD completo no admin
 - **Provedores Auth**: 3 (Google, Meta, Credentials)
-- **shadcn/ui**: 10 componentes instalados
-- **Admin**: Dashboard, Posts (criar/editar/listar), Categories, Tags
-- **Features**: Tiptap, Comentários, Newsletter, Visualizações, Rate Limiting
+- **shadcn/ui**: 11 componentes instalados
+- **Admin**: Dashboard, Posts (criar/editar/listar), Categories, Tags, Comentários
+- **Features**: Tiptap, Comentários, Newsletter, Visualizações, Ratings, Analytics, Rate Limiting
 
 ---
 
@@ -115,6 +129,7 @@
 - **Admin**: http://localhost:3000/admin
 - **Admin Tags**: http://localhost:3000/admin/tags
 - **Admin Categories**: http://localhost:3000/admin/categories
+- **Admin Comments**: http://localhost:3000/admin/comments
 - **Banco**: Neon (neondb)
 
 ---
