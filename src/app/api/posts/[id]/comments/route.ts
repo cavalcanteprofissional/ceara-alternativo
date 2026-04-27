@@ -2,10 +2,41 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { auth } from '@/lib/auth'
 import { z } from 'zod'
+import { Resend } from 'resend'
+import { commentNotificationEmail } from '@/lib/email-templates'
 
 const commentSchema = z.object({
   content: z.string().min(3, 'Comentário deve ter pelo menos 3 caracteres'),
 })
+
+async function sendCommentNotification(
+  authorName: string,
+  authorEmail: string,
+  content: string,
+  postTitle: string,
+  postSlug: string
+) {
+  const resendApiKey = process.env.RESEND_API_KEY
+  if (!resendApiKey) return
+
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@cearaalternativo.com.br'
+  const siteUrl = process.env.AUTH_URL || 'http://localhost:3000'
+
+  const resend = new Resend(resendApiKey)
+  await resend.emails.send({
+    from: 'Ceará Alternativo <newsletter@cearaalternativo.com.br>',
+    to: adminEmail,
+    subject: `Novo comentário em "${postTitle}"`,
+    html: commentNotificationEmail({
+      authorName,
+      authorEmail,
+      content,
+      postTitle,
+      postSlug,
+      siteUrl,
+    }),
+  })
+}
 
 export async function GET(
   req: NextRequest,
@@ -53,7 +84,7 @@ export async function POST(
 
     const post = await prisma.post.findUnique({
       where: { id, status: 'PUBLISHED' },
-      select: { id: true },
+      select: { id: true, title: true, slug: true },
     })
 
     if (!post) {
@@ -68,10 +99,18 @@ export async function POST(
       },
       include: {
         author: {
-          select: { id: true, name: true, image: true },
+          select: { id: true, name: true, email: true, image: true },
         },
       },
     })
+
+    sendCommentNotification(
+      comment.author.name || 'Anônimo',
+      comment.author.email || '',
+      comment.content,
+      post.title,
+      post.slug
+    ).catch(console.error)
 
     return NextResponse.json(
       { message: 'Comentário enviado para análise', comment },

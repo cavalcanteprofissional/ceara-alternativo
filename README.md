@@ -51,7 +51,7 @@ Crie um arquivo `.env` com:
 
 ```env
 # Banco de dados (Neon PostgreSQL)
-DATABASE_URL="postgresql://user:pass@host.neon.tech/dbname?sslmode=require"
+DATABASE_URL="postgresql://user:pass@host.neon.tech/dbname?sslmode=require&uselibpqcompat=true"
 
 # NextAuth
 AUTH_URL="http://localhost:3000"
@@ -69,8 +69,17 @@ AUTH_META_SECRET="seu-meta-app-secret"
 UPSTASH_REDIS_REST_URL="seu-url"
 UPSTASH_REDIS_REST_TOKEN="seu-token"
 
-# Resend (para Newsletter - opcional)
+# Resend (para Newsletter e notificações - opcional)
 RESEND_API_KEY="seu-api-key"
+ADMIN_EMAIL="admin@seudominio.com"
+
+# Uploadthing (para upload de imagens - opcional)
+UPLOADTHING_SECRET="seu-secret"
+UPLOADTHING_APP_ID="seu-app-id"
+
+# MeiliSearch (para busca avançada - opcional)
+MEILISEARCH_HOST="https://search.meilisearch.com"
+MEILISEARCH_API_KEY="seu-api-key"
 
 # Plausible Analytics (opcional)
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN="seudominio.com"
@@ -120,6 +129,9 @@ ceara-alternativo/
 - **Editor**: Tiptap (Rich Text Editor)
 - **Interação**: Comentários, Ratings (likes), Visualizações
 - **Newsletter**: Integração com Resend
+- **Notificações**: Email automático para novos comentários
+- **Upload**: Upload de imagens com Uploadthing
+- **Busca**: Busca avançada com MeiliSearch
 - **SEO**: sitemap.xml, robots.txt, RSS Feed, OpenGraph
 - **Analytics**: Plausible (privacy-friendly)
 - **Rate Limiting**: Upstash Redis (com fallback in-memory)

@@ -81,14 +81,19 @@
 - [x] Configuração vercel.json para migrations automáticas
 - [x] Seed do banco de dados (prisma/seed.ts)
 
+### Fase 6: Funcionalidades Opcionais
+- [x] Upload de imagens (Uploadthing)
+- [x] Notificações por email para comentários (Resend)
+- [x] Busca avançada com MeiliSearch
+
 ---
 
 ## 📋 Pendentes
 
-### Funcionalidades Opcionais
-- [ ] Upload de imagens (Cloudinary/Uploadthing)
-- [ ] Integração com MeiliSearch/Algolia para busca avançada
-- [ ] Notificações por email para comentários pendentes
+### Configuração de Serviços (opcional)
+- [ ] Configurar Uploadthing (criar conta, obter API keys)
+- [ ] Configurar MeiliSearch (criar conta, criar index, executar sync)
+- [ ] Configurar Resend (obter API key para newsletter e notificações)
 
 ---
 
@@ -104,13 +109,13 @@
 
 ## 📊 Estatísticas
 
-- **Arquivos criados**: ~90+
+- **Arquivos criados**: ~100+
 - **Categorias**: CRUD completo no admin
 - **Tags**: CRUD completo no admin
 - **Provedores Auth**: 3 (Google, Meta, Credentials)
 - **shadcn/ui**: 11 componentes instalados
 - **Admin**: Dashboard, Posts (criar/editar/listar), Categories, Tags, Comentários
-- **Features**: Tiptap, Comentários, Newsletter, Visualizações, Ratings, Analytics, Rate Limiting
+- **Features**: Tiptap, Comentários, Newsletter, Visualizações, Ratings, Analytics, Rate Limiting, Uploadthing, MeiliSearch
 
 ---
 

@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { RichTextEditor } from '@/components/admin/rich-text-editor'
+import { ImageUploader } from '@/components/admin/image-uploader'
 
 interface Category {
   id: string
@@ -127,19 +128,13 @@ export function PostForm({ post, categories, tags: allTags }: PostFormProps) {
       </div>
 
       <div>
-        <Label htmlFor="coverImage">Imagem de Capa (URL)</Label>
-        <Input
-          id="coverImage"
-          type="url"
-          value={formData.coverImage}
-          onChange={(e) => setFormData({ ...formData, coverImage: e.target.value })}
-          className="mt-1"
-        />
-        {formData.coverImage && (
-          <div className="mt-2 relative h-40 w-full max-w-md rounded-lg overflow-hidden">
-            <img src={formData.coverImage} alt="Preview" className="object-cover w-full h-full" />
-          </div>
-        )}
+        <Label>Imagem de Capa</Label>
+        <div className="mt-1">
+          <ImageUploader
+            value={formData.coverImage}
+            onChange={(url) => setFormData({ ...formData, coverImage: url })}
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
