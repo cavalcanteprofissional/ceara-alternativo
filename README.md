@@ -2,7 +2,7 @@
 
 Um portal de notícias e entretenimento do Ceará construído com tecnologias modernas e padrões de produção.
 
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)
 ![Tailwind](https://img.shields.io/badge/Tailwind-4.0-38BDF8?style=flat&logo=tailwind-css)
 ![Prisma](https://img.shields.io/badge/Prisma-7.0-2D3748?style=flat&logo=prisma)
@@ -14,10 +14,10 @@ Um portal de notícias e entretenimento do Ceará construído com tecnologias mo
 
 ### Pré-requisitos
 
-- Node.js 18+
+- Node.js 20+
 - PostgreSQL (Neon ou local)
-- Conta Google Developer (para OAuth)
-- Conta Meta Developer (para Facebook Login)
+- Conta Google Developer (para OAuth - opcional)
+- Conta Meta Developer (para Facebook Login - opcional)
 
 ### Instalação
 
@@ -30,10 +30,12 @@ cd ceara-alternativo
 npm install
 
 # Configure as variáveis de ambiente
-cp .env.example .env.local
+cp .env.example .env
+# Edite o .env com a DATABASE_URL do Neon
 
-# Execute as migrações do banco
-DATABASE_URL="sua-url-postgres" npx prisma db push
+# Execute as migrações e seed
+npx prisma db push
+npx prisma db seed
 
 # Inicie o servidor de desenvolvimento
 npm run dev
@@ -45,29 +47,39 @@ Acesse http://localhost:3000
 
 ## ⚙️ Variáveis de Ambiente
 
-Crie um arquivo `.env.local` com:
+Crie um arquivo `.env` com:
 
 ```env
 # Banco de dados (Neon PostgreSQL)
 DATABASE_URL="postgresql://user:pass@host.neon.tech/dbname?sslmode=require"
 
-# Auth.js
-AUTH_SECRET="gerar-com-npx-auth-secret"
+# NextAuth
 AUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="gerar-com-openssl-rand-base64-32"
 
-# Google OAuth
+# Google OAuth (opcional)
 AUTH_GOOGLE_ID="seu-google-client-id"
 AUTH_GOOGLE_SECRET="seu-google-client-secret"
 
-# Meta (Facebook) OAuth
+# Meta (Facebook) OAuth (opcional)
 AUTH_META_ID="seu-meta-app-id"
 AUTH_META_SECRET="seu-meta-app-secret"
+
+# Upstash Redis (opcional - rate limiting)
+UPSTASH_REDIS_REST_URL="seu-url"
+UPSTASH_REDIS_REST_TOKEN="seu-token"
+
+# Resend (para Newsletter - opcional)
+RESEND_API_KEY="seu-api-key"
+
+# Plausible Analytics (opcional)
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN="seudominio.com"
 ```
 
-### Gerar AUTH_SECRET
+### Gerar NEXTAUTH_SECRET
 
 ```bash
-npx auth secret
+openssl rand -base64 32
 ```
 
 ---
@@ -77,7 +89,7 @@ npx auth secret
 ```
 ceara-alternativo/
 ├── src/
-│   ├── app/                 # App Router (Next.js 14)
+│   ├── app/                 # App Router (Next.js 16)
 │   │   ├── (admin)/        # Painel administrativo
 │   │   ├── (public)/       # Páginas públicas
 │   │   ├── api/            # API Routes
@@ -90,9 +102,10 @@ ceara-alternativo/
 │   └── lib/                # Utilitários (Prisma, Auth, etc)
 ├── prisma/
 │   ├── schema.prisma      # Schema do banco
-│   └── seed.ts             # Dados iniciais
-└── docs/
-    └── database/           # Documentação do DB
+│   ├── seed.ts            # Dados iniciais
+│   └── migrations/        # Migrações
+├── deploy.sh              # Script de deploy
+└── vercel.json           # Configuração Vercel
 ```
 
 ---
@@ -102,18 +115,15 @@ ceara-alternativo/
 ### ✅ Implementado
 
 - **Autenticação**: Google, Meta (Facebook), Email/Senha
-- **Painel Admin**: Dashboard, Posts, Categorias, Tags
-- **Público**: Homepage, Artigos, Categorias, Busca
-- **SEO**: sitemap.xml, robots.txt, RSS, metadata OpenGraph
+- **Painel Admin**: Dashboard, Posts, Categorias, Tags, Comentários
+- **Público**: Homepage, Artigos, Categorias, Busca, Tags
+- **Editor**: Tiptap (Rich Text Editor)
+- **Interação**: Comentários, Ratings (likes), Visualizações
+- **Newsletter**: Integração com Resend
+- **SEO**: sitemap.xml, robots.txt, RSS Feed, OpenGraph
+- **Analytics**: Plausible (privacy-friendly)
+- **Rate Limiting**: Upstash Redis (com fallback in-memory)
 - **UI**: Modo escuro, responsivo, shadcn/ui
-- **Extras**: Visualizações, preview artigos, rate limiting
-
-### 🔜 Próximas Versões
-
-- Newsletter
-- Sistema de comentários
-- Editor de texto rico (Tiptap)
-- Analytics (Plausible/Sentry)
 
 ---
 
@@ -122,15 +132,17 @@ ceara-alternativo/
 ```bash
 # Desenvolvimento
 npm run dev          # Iniciar servidor
-npm run build       # Build production
-npm run start       # Iniciar produção
+npm run build        # Build production
+npm run start        # Iniciar produção
 
 # Banco de dados
-npx prisma studio   # Visualizar banco
-npx prisma generate # Gerar cliente
+npx prisma db push           # Sincronizar schema
+npx prisma db seed           # Popular dados iniciais
+npx prisma migrate deploy    # Aplicar migrações
+npx prisma studio            # Visualizar banco
 
-# Linting
-npm run lint         # Verificar erros
+# Deploy
+./deploy.sh                 # Deploy local
 ```
 
 ---
@@ -161,45 +173,28 @@ npm run lint         # Verificar erros
 ### Vercel (Recomendado)
 
 1. Conecte seu repositório no [Vercel](https://vercel.com)
-2. Configure as variáveis de ambiente
+2. Configure as variáveis de ambiente:
+   - `DATABASE_URL` (obrigatório)
+   - `NEXTAUTH_SECRET` (obrigatório)
+   - `AUTH_URL` (ex: https://seudominio.com)
 3. Deploy automático ao fazer push
 
-### Railway (Futuro)
+O `vercel.json` já está configurado para aplicar migrações automaticamente.
 
-```bash
-# Instale o CLI
-railway login
-railway init
+---
 
-# Adicione PostgreSQL
-railway add postgresql
+## 🔑 Credenciais Padrão (Desenvolvimento)
 
-# Deploy
-railway up
-```
+Após executar `npx prisma db seed`:
+
+- **Email**: `admin@cearaalternativo.com.br`
+- **Senha**: `admin123`
 
 ---
 
 ## 📄 Licença
 
 MIT © 2026 Ceará Alternativo
-
----
-
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie sua branch (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -m 'feat: nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
-
----
-
-## 📞 Suporte
-
-- Email: contato@cearaalternativo.com.br
-- Issues: https://github.com/cavalcanteprofissional/ceara-alternativo/issues
 
 ---
 

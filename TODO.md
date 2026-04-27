@@ -79,18 +79,11 @@
 - [x] Paginação em listas (posts admin)
 - [x] Script de deploy (deploy.sh)
 - [x] Configuração vercel.json para migrations automáticas
+- [x] Seed do banco de dados (prisma/seed.ts)
 
 ---
 
-## 📋 Pendentes (Pós-Deploy)
-
-### Importante: Aplicar Migrations
-Após cada pull/deploy, execute:
-```bash
-npx prisma migrate deploy
-# ou
-npx prisma db push
-```
+## 📋 Pendentes
 
 ### Funcionalidades Opcionais
 - [ ] Upload de imagens (Cloudinary/Uploadthing)
@@ -131,6 +124,15 @@ npx prisma db push
 - **Admin Categories**: http://localhost:3000/admin/categories
 - **Admin Comments**: http://localhost:3000/admin/comments
 - **Banco**: Neon (neondb)
+
+---
+
+## 🔑 Credenciais Padrão (Desenvolvimento)
+
+Após executar `npx prisma db seed`:
+
+- **Email**: `admin@cearaalternativo.com.br`
+- **Senha**: `admin123`
 
 ---
 
