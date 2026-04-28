@@ -110,16 +110,22 @@
 ### Fase 11: Funcionalidades Extras
 - [x] GitHub OAuth provider adicionado (.env)
 - [x] PWA manifest.json
+- [x] Twitter/X OAuth provider
+
+### Fase 12: i18n (Multi-idioma)
+- [x] next-intl library install
+- [x] Criar message files (pt-BR.json, en.json)
+- [x] Criar middleware para locale detection
+- [x] Criar i18n config
+- [x] Atualizar rotas com [locale]
+- [x] Adicionar language switcher
+- [ ] Resolver erro do script Plausible (@next/third-parties)
 
 ---
 
 ## 📋 Pendentes (Próximas etapas)
 
-### Fase 11 - Continuação
-- [ ] Twitter/X OAuth provider
-- [ ] i18n (multi-idioma)
-
----
+### Fase 12 - i18n
 
 ## 🐛 Bugs e Issues
 

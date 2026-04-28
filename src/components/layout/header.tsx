@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import { ThemeToggle } from './theme-toggle'
+import { LanguageSwitcher } from './language-switcher'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
@@ -57,6 +58,7 @@ export function Header() {
             </button>
             
             <ThemeToggle />
+            <LanguageSwitcher />
             {session ? (
               <div className="flex items-center gap-4">
                 <Link href="/admin" className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">

@@ -1,0 +1,66 @@
+{
+  "Home": {
+    "title": "Ceará Alternativo",
+    "subtitle": "Portal de notícias e entretenimento do Ceará",
+    "latestNews": "Últimas Notícias",
+    "readMore": "Ler mais",
+    "minutesRead": "min de leitura"
+  },
+  "Nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "contact": "Contato",
+    "search": "Buscar",
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "logout": "Sair"
+  },
+  "Search": {
+    "placeholder": "Buscar artigos...",
+    "noResults": "Nenhum resultado encontrado",
+    "resultsFor": "Resultados para"
+  },
+  "Category": {
+    "all": "Todas as categorias"
+  },
+  "Article": {
+    "publishedAt": "Publicado em",
+    "author": "Por",
+    "share": "Compartilhar",
+    "comments": "Comentarios",
+    "leaveComment": "Deixe um comentario",
+    "loginToComment": "Entre para comentar"
+  },
+  "Auth": {
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "email": "Email",
+    "password": "Senha",
+    "confirmPassword": "Confirmar senha",
+    "name": "Nome",
+    "forgotPassword": "Esqueceu a senha?",
+    "noAccount": "Nao tem conta?",
+    "hasAccount": "Ja tem conta?",
+    "signInWith": "Ou entre com"
+  },
+  "Admin": {
+    "dashboard": "Painel",
+    "posts": "Posts",
+    "categories": "Categorias",
+    "tags": "Tags",
+    "comments": "Comentarios",
+    "newPost": "Novo Post",
+    "editPost": "Editar Post"
+  },
+  "Common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "create": "Criar",
+    "back": "Voltar",
+    "submit": "Enviar"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "Home": {
+    "title": "Ceara Alternativo",
+    "subtitle": "News and entertainment portal from Ceara",
+    "latestNews": "Latest News",
+    "readMore": "Read more",
+    "minutesRead": "min read"
+  },
+  "Nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "search": "Search",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "Search": {
+    "placeholder": "Search articles...",
+    "noResults": "No results found",
+    "resultsFor": "Results for"
+  },
+  "Category": {
+    "all": "All categories"
+  },
+  "Article": {
+    "publishedAt": "Published on",
+    "author": "By",
+    "share": "Share",
+    "comments": "Comments",
+    "leaveComment": "Leave a comment",
+    "loginToComment": "Login to comment"
+  },
+  "Auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "name": "Name",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signInWith": "Or sign in with"
+  },
+  "Admin": {
+    "dashboard": "Dashboard",
+    "posts": "Posts",
+    "categories": "Categories",
+    "tags": "Tags",
+    "comments": "Comments",
+    "newPost": "New Post",
+    "editPost": "Edit Post"
+  },
+  "Common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "back": "Back",
+    "submit": "Submit"
+  }
+}

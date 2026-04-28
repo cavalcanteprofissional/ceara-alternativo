@@ -166,6 +166,7 @@ ceara-alternativo/
 - **Performance**: Cache (revalidate), Next.js Image
 - **UI**: Modo escuro, responsivo, shadcn/ui, 404 customizada
 - **PWA**: Manifest para installable web app
+- **i18n**: Multi-idioma (pt-BR, en) com next-intl
 
 ---
 
