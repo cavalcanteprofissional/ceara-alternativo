@@ -122,12 +122,7 @@
 - [x] Resolver erro do script Plausible (@next/third-parties)
 - [x] Corrigir estrutura (remover rotas conflitantes)
 - [x] Corrigir theme-provider (remover enableSystem)
-
----
-
-## 📋 Pendentes (Próximas etapas)
-
-### Fase 12 - i18n - Correes pendentes
+- [x] Corrigir HTML nesting (2 layouts com html/body)
 - [ ] ThemeProvider still causes Turbopack warning
 - [ ] Analytics (Plausible) need alternative
 - [ ] Verify all locale routes work correctly
