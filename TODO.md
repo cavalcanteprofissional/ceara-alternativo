@@ -90,6 +90,10 @@
 
 ## 📋 Pendentes
 
+### Recentes
+- [x] Configurar Upstash Redis (rate limiting)
+- [x] Corrigir warning SSL do PostgreSQL (uselibpqcompat=true)
+
 ### Configuração de Serviços (opcional)
 - [ ] Configurar Uploadthing (criar conta, obter API keys)
 - [ ] Configurar MeiliSearch (criar conta, criar index, executar sync)
@@ -141,4 +145,4 @@ Após executar `npx prisma db seed`:
 
 ---
 
-*Atualizado em: 2026-04-27*
+*Atualizado em: 2026-04-27 18:30*
