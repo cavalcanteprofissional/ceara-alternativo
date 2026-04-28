@@ -119,7 +119,7 @@
 - [x] Criar i18n config
 - [x] Atualizar rotas com [locale]
 - [x] Adicionar language switcher
-- [ ] Resolver erro do script Plausible (@next/third-parties)
+- [x] Resolver erro do script Plausible (@next/third-parties)
 
 ---
 
