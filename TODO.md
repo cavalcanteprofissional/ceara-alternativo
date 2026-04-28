@@ -104,33 +104,20 @@
 
 ### Fase 10: Developer Experience
 - [x] Adicionar ESLint/Prettier com regras rigorosas
-- [ ] Configurar Husky pre-commit
-- [ ] Component library reutilizável
+- [x] Script precommit para lint manual
+- [x] Component library reutilizável (shadcn/ui)
+
+### Fase 11: Funcionalidades Extras
+- [x] GitHub OAuth provider adicionado (.env)
+- [x] PWA manifest.json
 
 ---
 
-## 📋 Pendentes
+## 📋 Pendentes (Próximas etapas)
 
-### Performance e Cache
-- [ ] Adicionar stale-while-revalidate nas rotas públicas
-- [ ] Otimizar todas as imagens com Next.js Image
-
-### SEO Avançado
-- [ ] JSON-LD para artigos
-- [ ] Canonical URLs
-
-### UI/UX
-- [ ] Páginas de erro personalizadas
-- [ ] Skeletons de carregamento
-
-### Developer Experience
-- [ ] ESLint + Prettier rigorosos
-- [ ] Husky pre-commit hook
-
-### Extras (Opcional)
-- [ ] PWA
-- [ ] Multi-idioma
-- [ ] Mais OAuth providers
+### Fase 11 - Continuação
+- [ ] Twitter/X OAuth provider
+- [ ] i18n (multi-idioma)
 
 ---
 

@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     template: '%s | Ceará Alternativo',
   },
   description: 'Portal de notícias e entretenimento do Ceará',
+  manifest: '/manifest.json',
   openGraph: {
     title: 'Ceará Alternativo',
     description: 'Portal de notícias e entretenimento do Ceará',
