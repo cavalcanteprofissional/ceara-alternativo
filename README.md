@@ -152,10 +152,11 @@ ceara-alternativo/
 - **Notificações**: Email automático para novos comentários
 - **Upload**: Upload de imagens com Uploadthing
 - **Busca**: Busca avançada com MeiliSearch
-- **SEO**: sitemap.xml, robots.txt, RSS Feed, OpenGraph
+- **SEO**: sitemap.xml, robots.txt, RSS Feed, OpenGraph, JSON-LD, Canonical URLs
 - **Analytics**: Plausible (privacy-friendly)
 - **Rate Limiting**: Upstash Redis (com fallback in-memory)
-- **UI**: Modo escuro, responsivo, shadcn/ui
+- **Performance**: Cache (revalidate), Next.js Image
+- **UI**: Modo escuro, responsivo, shadcn/ui, 404 customizada
 
 ---
 
