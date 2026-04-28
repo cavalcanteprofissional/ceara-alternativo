@@ -93,6 +93,10 @@ AUTH_GITHUB_SECRET="seu-github-client-secret"
 UPSTASH_REDIS_REST_URL="seu-url"
 UPSTASH_REDIS_REST_TOKEN="seu-token"
 
+# Twitter/X OAuth (opcional)
+AUTH_TWITTER_ID="seu-twitter-api-key"
+AUTH_TWITTER_SECRET="seu-twitter-api-secret"
+
 # Resend (para Newsletter e notificações - opcional)
 RESEND_API_KEY="seu-api-key"
 ADMIN_EMAIL="admin@seudominio.com"
@@ -211,6 +215,14 @@ npx prisma studio            # Visualizar banco
 3. Adicione URIs de redirect:
    - `http://localhost:3000/api/auth/callback/github`
    - `https://seudominio.com/api/auth/callback/github`
+
+### Twitter/X
+
+1. Acesse [Twitter Developer Portal](https://developer.twitter.com)
+2. Crie um novo projeto (OAuth 2.0 ou OAuth 1.0a)
+3. Adicione URIs de redirect:
+   - `http://localhost:3000/api/auth/callback/twitter`
+   - `https://seudominio.com/api/auth/callback/twitter`
 
 ---
 
