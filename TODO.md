@@ -86,18 +86,56 @@
 - [x] Notificações por email para comentários (Resend)
 - [x] Busca avançada com MeiliSearch
 
+### Fase 7: Performance e Cache
+- [ ] Adicionar cache com stale-while-revalidate nas páginas públicas
+- [ ] Usar Next.js Image para todas as imagens (lazy loading, webp)
+- [ ] Implementar revalidate por tags (posts, categorias)
+
+### Fase 8: SEO Avançado
+- [ ] Adicionar JSON-LD Schema para artigos
+- [ ] Melhorar meta tags dinâmicas
+- [ ] Canonical URLs corretas
+- [ ] Breadcrumbs estruturados
+
+### Fase 9: UI/UX Melhorias
+- [ ] Melhores páginas de erro (404, 500)
+- [ ] Loading skeletons mais completos
+- [ ] Animações de transição entre páginas
+
+### Fase 10: Developer Experience
+- [ ] Adicionar ESLint/Prettier com regras rigorosas
+- [ ] Configurar Husky pre-commit
+- [ ] Component library reutilizável
+
+### Fase 11: Funcionalidades Extras
+- [ ] PWA com Service Worker
+- [ ] Mais provedores OAuth (GitHub, Twitter/X)
+- [ ] Multi-idioma (pt-BR/en-US)
+
 ---
 
 ## 📋 Pendentes
 
-### Recentes
-- [x] Configurar Upstash Redis (rate limiting)
-- [x] Corrigir warning SSL do PostgreSQL (uselibpqcompat=true)
+### Performance e Cache
+- [ ] Adicionar stale-while-revalidate nas rotas públicas
+- [ ] Otimizar todas as imagens com Next.js Image
 
-### Configuração de Serviços (opcional)
-- [ ] Configurar Uploadthing (criar conta, obter API keys)
-- [ ] Configurar MeiliSearch (criar conta, criar index, executar sync)
-- [ ] Configurar Resend (obter API key para newsletter e notificações)
+### SEO Avançado
+- [ ] JSON-LD para artigos
+- [ ] Canonical URLs
+
+### UI/UX
+- [ ] Páginas de erro personalizadas
+- [ ] Skeletons de carregamento
+
+### Developer Experience
+- [ ] ESLint + Prettier rigorosos
+- [ ] Husky pre-commit hook
+
+### Extras (Opcional)
+- [ ] PWA
+- [ ] Multi-idioma
+- [ ] Mais OAuth providers
 
 ---
 
@@ -120,6 +158,10 @@
 - **shadcn/ui**: 11 componentes instalados
 - **Admin**: Dashboard, Posts (criar/editar/listar), Categories, Tags, Comentários
 - **Features**: Tiptap, Comentários, Newsletter, Visualizações, Ratings, Analytics, Rate Limiting, Uploadthing, MeiliSearch
+
+### Recentes (fixes)
+- [x] Configurar Upstash Redis (rate limiting)
+- [x] Corrigir warning SSL do PostgreSQL (uselibpqcompat=true)
 
 ---
 
@@ -145,4 +187,4 @@ Após executar `npx prisma db seed`:
 
 ---
 
-*Atualizado em: 2026-04-27 18:30*
+*Atualizado em: 2026-04-27 18:45*
