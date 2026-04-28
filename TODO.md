@@ -84,7 +84,7 @@
 ### Fase 6: Funcionalidades Opcionais
 - [x] Upload de imagens (Uploadthing)
 - [x] Notificações por email para comentários (Resend)
-- [x] Busca avançada com MeiliSearch
+- [ ] Busca avançada com MeiliSearch (problemas - considerar替代方案)
 
 ### Fase 7: Performance e Cache
 - [x] Adicionar cache com stale-while-revalidate nas páginas públicas
@@ -153,7 +153,7 @@
 - **Provedores Auth**: 3 (Google, Meta, Credentials)
 - **shadcn/ui**: 11 componentes instalados
 - **Admin**: Dashboard, Posts (criar/editar/listar), Categories, Tags, Comentários
-- **Features**: Tiptap, Comentários, Newsletter, Visualizações, Ratings, Analytics, Rate Limiting, Uploadthing, MeiliSearch
+- **Features**: Tiptap, Comentários, Newsletter, Visualizações, Ratings, Rate Limiting, Uploadthing, Busca PostgreSQL
 
 ### Recentes (fixes)
 - [x] Configurar Upstash Redis (rate limiting)
@@ -184,3 +184,64 @@ Após executar `npx prisma db seed`:
 ---
 
 *Atualizado em: 2026-04-27 19:15*
+
+---
+
+## 🔮 Próximas Fases (Planejado)
+
+### Fase 13: Limpeza e Otimização
+
+| # | Tarefa | Descrição |
+|---|--------|-----------|
+| 1 | Remover MeiliSearch | Substituir por PostgreSQL Full-Text Search (já implementado via Prisma contains) |
+| 2 | Configurar indexes PostgreSQL | Adicionar índices para busca full-text em title e content |
+| 3 | Limpar código morto | Remover arquivos/constants não usados |
+
+### Fase 14: Melhorias de Busca
+
+| # | Tarefa | Descrição |
+|---|--------|-----------|
+| 1 | PostgreSQL Full-Text | Usar `to_tsvector` e `plainto_tsquery` do PostgreSQL |
+| 2 | Busca com highlight | Destacar termos encontrados nos resultados |
+| 3 | Filtros avançados | Busca por categoria, data, autor |
+
+### Fase 15: Performance
+
+| # | Tarefa | Descrição |
+|---|--------|-----------|
+| 1 | Analytics simples | Implementar contagem de visualizações sem serviços externos |
+| 2 | Otimização de imagens | Verificar uso do Next.js Image em todos os lugares |
+| 3 | Cache API responses | Adicionar cache às rotas de API |
+
+### Fase 16: Funcionalidades Extras
+
+| # | Tarefa | Descrição |
+|---|--------|-----------|
+| 1 | Newsletter | Completar sistema de newsletter com Resend |
+| 2 | Social sharing | Adicionar botões de compartilhar em artigos |
+| 3 | Breadcrumbs | Implementar breadcrumbs em todas as páginas |
+| 4 | Related posts | Mostrar artigos relacionados no final de cada post |
+
+### Fase 17: UI/UX
+
+| # | Tarefa | Descrição |
+|---|--------|-----------|
+| 1 | Skeleton loading | Melhorar estados de carregamento |
+| 2 | Animações Framer Motion | Adicionar transições suaves |
+| 3 | Dark mode colors | Revisar cores para modo escuro |
+| 4 | Mobile menu | Melhorar navegação mobile |
+
+---
+
+### 📋 Notas Técnicas
+
+#### Sobre MeiliSearch:
+- **Problema**: Serviço externo com custos adicionais
+- **Solução atual**: Busca via Prisma `contains` (funciona bem paramedium sites)
+- **Alternativa futura**: PostgreSQL Full-Text Search com `to_tsvector`
+
+#### Alternativas consideradas:
+1. **PostgreSQL Full-Text** → Já implementado, nenhum custo adicional
+2. **Algolia** → SaaS pago, excelente mas custo
+3. **Typesense** → Open source similar ao MeiliSearch
+4. **Elasticsearch** → Muito pesado para este projeto
