@@ -103,19 +103,9 @@
 - [x] Animações de transição entre páginas
 
 ### Fase 10: Developer Experience
-- [ ] Adicionar ESLint/Prettier com regras rigorosas
+- [x] Adicionar ESLint/Prettier com regras rigorosas
 - [ ] Configurar Husky pre-commit
 - [ ] Component library reutilizável
-
-### Fase 10: Developer Experience
-- [ ] Adicionar ESLint/Prettier com regras rigorosas
-- [ ] Configurar Husky pre-commit
-- [ ] Component library reutilizável
-
-### Fase 11: Funcionalidades Extras
-- [ ] PWA com Service Worker
-- [ ] Mais provedores OAuth (GitHub, Twitter/X)
-- [ ] Multi-idioma (pt-BR/en-US)
 
 ---
 
@@ -192,4 +182,4 @@ Após executar `npx prisma db seed`:
 
 ---
 
-*Atualizado em: 2026-04-27 19:00*
+*Atualizado em: 2026-04-27 19:15*

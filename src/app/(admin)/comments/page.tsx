@@ -32,17 +32,6 @@ export default function AdminCommentsPage() {
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<'pending' | 'approved' | 'all'>('pending')
 
-  useEffect(() => {
-    if (status === 'loading') return
-    if (!session || !['ADMIN', 'EDITOR'].includes(session.user.role)) {
-      router.push('/login')
-    }
-  }, [session, status, router])
-
-  useEffect(() => {
-    fetchComments()
-  }, [filter])
-
   const fetchComments = async () => {
     setLoading(true)
     try {
@@ -59,6 +48,17 @@ export default function AdminCommentsPage() {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (status === 'loading') return
+    if (!session || !['ADMIN', 'EDITOR'].includes(session.user.role)) {
+      router.push('/login')
+    }
+  }, [session, status, router])
+
+  useEffect(() => {
+    fetchComments()
+  }, [filter])
 
   const handleApprove = async (id: string, approved: boolean) => {
     try {
