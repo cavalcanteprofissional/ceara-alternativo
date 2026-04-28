@@ -21,6 +21,7 @@ export function Hero() {
             src={mockHeroPost.coverImage}
             alt={mockHeroPost.title}
             fill
+            sizes="100vw"
             className="object-cover group-hover:scale-105 transition-transform duration-500"
             priority
           />

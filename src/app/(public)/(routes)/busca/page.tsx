@@ -4,6 +4,8 @@ import { ArticleGrid } from '@/components/blog/article-grid'
 import { Sidebar } from '@/components/blog/sidebar'
 import { notFound } from 'next/navigation'
 
+export const revalidate = 30
+
 interface Props {
   params: Promise<{ q: string }>
   searchParams: Promise<{ page?: string }>

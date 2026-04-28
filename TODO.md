@@ -87,8 +87,8 @@
 - [x] Busca avançada com MeiliSearch
 
 ### Fase 7: Performance e Cache
-- [ ] Adicionar cache com stale-while-revalidate nas páginas públicas
-- [ ] Usar Next.js Image para todas as imagens (lazy loading, webp)
+- [x] Adicionar cache com stale-while-revalidate nas páginas públicas
+- [x] Usar Next.js Image para todas as imagens (lazy loading, webp)
 - [ ] Implementar revalidate por tags (posts, categorias)
 
 ### Fase 8: SEO Avançado

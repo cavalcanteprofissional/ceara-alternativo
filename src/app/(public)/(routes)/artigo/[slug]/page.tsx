@@ -7,6 +7,8 @@ import { ViewCounter } from '@/components/blog/view-counter'
 import { Comments } from '@/components/blog/comments'
 import { RatingButton } from '@/components/blog/rating-button'
 
+export const revalidate = 300
+
 interface Props {
   params: Promise<{ slug: string }>
 }

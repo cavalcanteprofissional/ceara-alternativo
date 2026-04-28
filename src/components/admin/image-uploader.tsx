@@ -5,6 +5,7 @@ import { UploadButton } from '@uploadthing/react'
 import type { OurFileRouter } from '@/app/api/uploadthing/core'
 import { X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 interface ImageUploaderProps {
   value: string
@@ -27,10 +28,12 @@ export function ImageUploader({ value, onChange, disabled }: ImageUploaderProps)
       {value ? (
         <div className="relative group">
           <div className="relative h-40 w-full rounded-lg overflow-hidden border border-stone-300 dark:border-stone-700">
-            <img
+            <Image
               src={value}
               alt="Cover preview"
-              className="object-cover w-full h-full"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
             <button
               type="button"

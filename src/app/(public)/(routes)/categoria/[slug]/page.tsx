@@ -4,6 +4,8 @@ import { prisma } from '@/lib/prisma'
 import { ArticleGrid } from '@/components/blog/article-grid'
 import { Sidebar } from '@/components/blog/sidebar'
 
+export const revalidate = 120
+
 interface Props {
   params: Promise<{ slug: string }>
 }

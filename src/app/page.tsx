@@ -3,6 +3,7 @@ import { ArticleGrid } from '@/components/blog/article-grid'
 import { Sidebar } from '@/components/blog/sidebar'
 import { prisma } from '@/lib/prisma'
 
+export const revalidate = 60
 export const dynamic = 'force-dynamic'
 
 async function getRecentPosts() {
