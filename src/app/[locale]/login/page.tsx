@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { LoginForm } from './login-form'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Entrar',
   description: 'Entre na sua conta no Ceará Alternativo',

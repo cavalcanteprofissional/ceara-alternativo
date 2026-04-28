@@ -4,6 +4,7 @@ import { ArticleGrid } from '@/components/blog/article-grid'
 import { Sidebar } from '@/components/blog/sidebar'
 import { notFound } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
 export const revalidate = 30
 
 interface Props {

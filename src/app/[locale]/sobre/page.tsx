@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Sobre',
   description: 'Sobre o Ceará Alternativo - Portal de notícias e entretenimento do Ceará',

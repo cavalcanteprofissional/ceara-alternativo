@@ -24,7 +24,6 @@ Um portal de notícias e entretenimento do Ceará construído com tecnologias mo
 | Email | Resend |
 | Busca | MeiliSearch (opcional) |
 | Cache/Rate Limit | Upstash Redis |
-| Analytics | Plausible |
 
 ---
 
@@ -108,9 +107,6 @@ UPLOADTHING_APP_ID="seu-app-id"
 # MeiliSearch (para busca avançada - opcional)
 MEILISEARCH_HOST="https://search.meilisearch.com"
 MEILISEARCH_API_KEY="seu-api-key"
-
-# Plausible Analytics (opcional)
-NEXT_PUBLIC_PLAUSIBLE_DOMAIN="seudominio.com"
 ```
 
 ### Gerar NEXTAUTH_SECRET
@@ -128,7 +124,7 @@ ceara-alternativo/
 ├── src/
 │   ├── app/                 # App Router (Next.js 16)
 │   │   ├── (admin)/        # Painel administrativo
-│   │   ├── (public)/       # Páginas públicas
+│   │   ├── [locale]/       # Páginas i18n (pt-BR, en)
 │   │   ├── api/            # API Routes
 │   │   └── layout.tsx      # Layout raiz
 │   ├── components/
@@ -136,11 +132,14 @@ ceara-alternativo/
 │   │   ├── blog/           # Componentes do blog
 │   │   ├── layout/         # Header, Footer, etc
 │   │   └── ui/             # shadcn/ui components
+│   ├── i18n/               # Configuração next-intl
+│   ├── messages/           # Arquivos de tradução (pt-BR.json, en.json)
 │   └── lib/                # Utilitários (Prisma, Auth, etc)
 ├── prisma/
 │   ├── schema.prisma      # Schema do banco
 │   ├── seed.ts            # Dados iniciais
 │   └── migrations/        # Migrações
+├── next-intl.config.ts    # Configuração next-intl v4
 ├── deploy.sh              # Script de deploy
 └── vercel.json           # Configuração Vercel
 ```
@@ -161,12 +160,11 @@ ceara-alternativo/
 - **Upload**: Upload de imagens com Uploadthing
 - **Busca**: Busca avançada com MeiliSearch
 - **SEO**: sitemap.xml, robots.txt, RSS Feed, OpenGraph, JSON-LD, Canonical URLs
-- **Analytics**: Plausible (privacy-friendly)
 - **Rate Limiting**: Upstash Redis (com fallback in-memory)
 - **Performance**: Cache (revalidate), Next.js Image
 - **UI**: Modo escuro, responsivo, shadcn/ui, 404 customizada
 - **PWA**: Manifest para installable web app
-- **i18n**: Multi-idioma (pt-BR, en) com next-intl
+- **i18n**: Multi-idioma (pt-BR, en) com next-intl v4
 
 ---
 

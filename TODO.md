@@ -124,8 +124,16 @@
 - [x] Corrigir theme-provider (remover enableSystem)
 - [x] Corrigir HTML nesting (2 layouts com html/body)
 - [x] Implementar theme manual sem next-themes (resolve Turbopack warning)
-- [ ] Analytics (Plausible) need alternative
-- [ ] Verify all locale routes work correctly
+- [x] Corrigir sonner.tsx (remover next-themes)
+- [x] Remover rotas antigas duplicadas (public)/(routes)
+- [x] Corrigir localePrefix para 'never' (resolve 404 em todas rotas)
+- [x] Corrigir i18n/navigation.ts para usar createNavigation do next-intl v4
+- [x] Corrigir LanguageSwitcher para usar useLocale do next-intl
+- [x] Corrigir Header com links usando locale atual
+- [x] Adicionar dynamic='force-dynamic' nas páginas (solve build prerender errors)
+- [x] Configurar NextIntlClientProvider no locale layout
+- [x] Criar next-intl.config.ts e src/i18n/request.ts
+- [x] Todas rotas i18n funcionando corretamente
 
 ## 🐛 Bugs e Issues
 

@@ -1,22 +1,26 @@
 'use client'
 
 import Link from 'next/link'
-import { useSession, signOut } from 'next-auth/react'
-import { ThemeToggle } from './theme-toggle'
-import { LanguageSwitcher } from './language-switcher'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import {useSession, signOut} from 'next-auth/react'
+import {ThemeToggle} from './theme-toggle'
+import {LanguageSwitcher} from './language-switcher'
+import {useState} from 'react'
+import {useRouter} from 'next/navigation'
 
-export function Header() {
-  const { data: session } = useSession()
+interface HeaderProps {
+  locale: string
+}
+
+export function Header({locale}: HeaderProps) {
+  const {data: session} = useSession()
   const router = useRouter()
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchOpen, setSearchOpen]=useState(false)
+  const [searchQuery, setSearchQuery]=useState('')
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (searchQuery.trim().length >= 2) {
-      router.push(`/busca?q=${encodeURIComponent(searchQuery.trim())}`)
+      router.push(`/${locale}/busca?q=${encodeURIComponent(searchQuery.trim())}`)
       setSearchOpen(false)
       setSearchQuery('')
     }
@@ -27,26 +31,25 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-8">
-            <Link href="/" className="text-2xl font-bold text-red-700 dark:text-red-500">
+            <Link href={`/${locale}`} className="text-2xl font-bold text-red-700 dark:text-red-500">
               Ceará Alternativo
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/" className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
+              <Link href={`/${locale}`} className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
                 Início
               </Link>
-              <Link href="/categoria/politica" className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
+              <Link href={`/${locale}/categoria/politica`} className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
                 Política
               </Link>
-              <Link href="/categoria/cultura" className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
+              <Link href={`/${locale}/categoria/cultura`} className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
                 Cultura
               </Link>
-              <Link href="/categoria/esportes" className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
+              <Link href={`/${locale}/categoria/esportes`} className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
                 Esportes
               </Link>
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            {/* Search Toggle */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
               className="p-2 text-stone-500 hover:text-red-700 dark:hover:text-red-500 transition-colors"
@@ -58,10 +61,10 @@ export function Header() {
             </button>
             
             <ThemeToggle />
-            <LanguageSwitcher />
+            <LanguageSwitcher locale={locale} />
             {session ? (
               <div className="flex items-center gap-4">
-                <Link href="/admin" className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
+                <Link href={`/${locale}/admin`} className="text-sm font-medium hover:text-red-700 dark:hover:text-red-500">
                   Admin
                 </Link>
                 <button
@@ -73,7 +76,7 @@ export function Header() {
               </div>
             ) : (
               <Link
-                href="/login"
+                href={`/${locale}/login`}
                 className="text-sm font-medium px-4 py-2 bg-red-700 text-white rounded-md hover:bg-red-800 transition-colors"
               >
                 Login
@@ -82,7 +85,6 @@ export function Header() {
           </div>
         </div>
 
-        {/* Search Bar */}
         {searchOpen && (
           <div className="pb-4">
             <form onSubmit={handleSearch} className="flex gap-2">

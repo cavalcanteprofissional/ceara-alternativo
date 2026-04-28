@@ -4,6 +4,10 @@ import { ThemeSwitch } from '@/components/theme-provider'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { defaultLocale } from '@/lib/i18n'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
+
+export const dynamic = 'force-dynamic'
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -35,13 +39,17 @@ export default async function LocaleLayout({
     notFound()
   }
 
+  const messages = await getMessages()
+
   return (
-    <div className={`${geist.variable} font-sans`}>
-      <ThemeSwitch>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </ThemeSwitch>
-    </div>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <div className={`${geist.variable} font-sans`}>
+        <ThemeSwitch>
+          <Header locale={locale} />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ThemeSwitch>
+      </div>
+    </NextIntlClientProvider>
   )
 }

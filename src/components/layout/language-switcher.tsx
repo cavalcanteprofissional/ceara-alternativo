@@ -1,31 +1,26 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { locales } from '@/lib/i18n'
+import {useRouter} from 'next/navigation'
 
-export function LanguageSwitcher() {
-  const pathname = usePathname()
-  
-  const getAlternativeLocale = () => {
-    if (pathname.startsWith('/en')) {
-      return pathname.replace('/en', '/pt-BR')
-    }
-    if (pathname.startsWith('/pt-BR')) {
-      return pathname.replace('/pt-BR', '/en')
-    }
-    // Default pages - add locale prefix
-    return `/en${pathname}`
+interface LanguageSwitcherProps {
+  locale: string
+}
+
+export function LanguageSwitcher({locale}: LanguageSwitcherProps) {
+  const router = useRouter()
+
+  const switchLocale = () => {
+    const newLocale = locale === 'pt-BR' ? 'en' : 'pt-BR'
+    router.push(`/${newLocale}`)
   }
 
-  const isEnglish = pathname.startsWith('/en')
-
   return (
-    <Link
-      href={getAlternativeLocale()}
+    <button
+      onClick={switchLocale}
       className="text-sm text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 px-2 py-1"
+      aria-label={locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'}
     >
-      {isEnglish ? 'PT' : 'EN'}
-    </Link>
+      {locale === 'pt-BR' ? 'EN' : 'PT'}
+    </button>
   )
 }

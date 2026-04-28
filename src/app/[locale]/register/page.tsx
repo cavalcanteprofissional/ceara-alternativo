@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { RegisterForm } from './register-form'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Criar Conta',
   description: 'Crie sua conta no Ceará Alternativo',
