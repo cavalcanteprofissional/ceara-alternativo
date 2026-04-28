@@ -10,6 +10,24 @@ Um portal de notícias e entretenimento do Ceará construído com tecnologias mo
 
 ---
 
+## 🛠️ Tecnologias
+
+| Categoria | Tecnologia |
+|------------|-------------|
+| Framework | Next.js 16 (App Router) |
+| Linguagem | TypeScript |
+| Estilização | Tailwind CSS + shadcn/ui |
+| Banco de dados | PostgreSQL (Neon) |
+| ORM | Prisma 7 |
+| Autenticação | NextAuth v5 (Google, Meta, Credentials) |
+| Upload | Uploadthing |
+| Email | Resend |
+| Busca | MeiliSearch (opcional) |
+| Cache/Rate Limit | Upstash Redis |
+| Analytics | Plausible |
+
+---
+
 ## 🚀 Começando
 
 ### Pré-requisitos
