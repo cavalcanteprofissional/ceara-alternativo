@@ -123,7 +123,7 @@
 - [x] Corrigir estrutura (remover rotas conflitantes)
 - [x] Corrigir theme-provider (remover enableSystem)
 - [x] Corrigir HTML nesting (2 layouts com html/body)
-- [ ] ThemeProvider still causes Turbopack warning
+- [x] Implementar theme manual sem next-themes (resolve Turbopack warning)
 - [ ] Analytics (Plausible) need alternative
 - [ ] Verify all locale routes work correctly
 
