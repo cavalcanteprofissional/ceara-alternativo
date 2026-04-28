@@ -92,10 +92,10 @@
 - [ ] Implementar revalidate por tags (posts, categorias)
 
 ### Fase 8: SEO Avançado
-- [ ] Adicionar JSON-LD Schema para artigos
-- [ ] Melhorar meta tags dinâmicas
-- [ ] Canonical URLs corretas
-- [ ] Breadcrumbs estruturados
+- [x] Adicionar JSON-LD Schema para artigos
+- [x] Melhorar meta tags dinâmicas
+- [x] Canonical URLs corretas
+- [x] Breadcrumbs estruturados
 
 ### Fase 9: UI/UX Melhorias
 - [ ] Melhores páginas de erro (404, 500)

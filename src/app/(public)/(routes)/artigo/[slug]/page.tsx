@@ -45,6 +45,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt || post.content.substring(0, 160),
+    authors: post.author.name ? [{ name: post.author.name }] : undefined,
+    alternates: {
+      canonical: `${process.env.AUTH_URL || 'http://localhost:3000'}/artigo/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt || post.content.substring(0, 160),
@@ -68,6 +72,36 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: post.title,
+            description: post.excerpt || post.content.substring(0, 160),
+            image: post.coverImage || undefined,
+            datePublished: post.publishedAt?.toISOString(),
+            dateModified: post.publishedAt?.toISOString(),
+            author: {
+              '@type': 'Person',
+              name: post.author.name || 'Ceará Alternativo',
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Ceará Alternativo',
+              logo: {
+                '@type': 'ImageObject',
+                url: '/favicon.ico',
+              },
+            },
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': `${process.env.AUTH_URL || 'http://localhost:3000'}/artigo/${post.slug}`,
+            },
+          }),
+        }}
+      />
       {/* Breadcrumb */}
       <nav className="mb-8">
         <ol className="flex items-center gap-2 text-sm text-stone-500">
