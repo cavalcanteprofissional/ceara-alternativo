@@ -85,6 +85,10 @@ AUTH_GOOGLE_SECRET="seu-google-client-secret"
 AUTH_META_ID="seu-meta-app-id"
 AUTH_META_SECRET="seu-meta-app-secret"
 
+# GitHub OAuth (opcional)
+AUTH_GITHUB_ID="seu-github-client-id"
+AUTH_GITHUB_SECRET="seu-github-client-secret"
+
 # Upstash Redis (opcional - rate limiting)
 UPSTASH_REDIS_REST_URL="seu-url"
 UPSTASH_REDIS_REST_TOKEN="seu-token"
@@ -143,7 +147,7 @@ ceara-alternativo/
 
 ### ✅ Implementado
 
-- **Autenticação**: Google, Meta (Facebook), Email/Senha
+- **Autenticação**: Google, GitHub, Meta (Facebook), Email/Senha
 - **Painel Admin**: Dashboard, Posts, Categorias, Tags, Comentários
 - **Público**: Homepage, Artigos, Categorias, Busca, Tags
 - **Editor**: Tiptap (Rich Text Editor)
@@ -157,6 +161,7 @@ ceara-alternativo/
 - **Rate Limiting**: Upstash Redis (com fallback in-memory)
 - **Performance**: Cache (revalidate), Next.js Image
 - **UI**: Modo escuro, responsivo, shadcn/ui, 404 customizada
+- **PWA**: Manifest para installable web app
 
 ---
 
@@ -198,6 +203,14 @@ npx prisma studio            # Visualizar banco
 3. Adicione URIs de redirect:
    - `http://localhost:3000/api/auth/callback/facebook`
    - `https://seudominio.com/api/auth/callback/facebook`
+
+### GitHub
+
+1. Acesse [GitHub Developer Settings](https://github.com/settings/developers)
+2. Crie um novo OAuth App
+3. Adicione URIs de redirect:
+   - `http://localhost:3000/api/auth/callback/github`
+   - `https://seudominio.com/api/auth/callback/github`
 
 ---
 
